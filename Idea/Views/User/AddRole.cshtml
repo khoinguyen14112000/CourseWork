@@ -13,7 +13,7 @@
             <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
         </li>
         <li class="breadcrumb-item">
-            <a asp-action="Index">User Index</a>
+            <a asp-action="Index">Manage User</a>
         </li>
         <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
     </ol>
@@ -35,7 +35,7 @@
                 foreach (var role in currentRoles)
                 {
                     <div class="d-flex align-items-center">
-                        <div>@role.Id</div>
+                        <div>@role.Name</div>
                         <div class="ml-auto">
                             <form asp-action="DeleteRole">
                                 <input type="hidden" asp-for="Id" name="userId" />
@@ -65,7 +65,7 @@
                 foreach (var role in remainingRoles)
                 {
                     <div class="d-flex align-items-center">
-                        <div>@role.Id</div>
+                        <div>@role.Name</div>
                         <div class="ml-auto">
                             <form asp-action="AddRole">
                                 <input type="hidden" asp-for="Id" name="userId" />

@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace Idea.Models
 {
@@ -15,13 +15,18 @@ namespace Idea.Models
 
     public class ApplicationUser : IdentityUser
     {
+        [Display(Name = "First Name")]
         public string? FirstName { get; set; }
+        [Display(Name = "Last Name")]
         public string? LastName { get; set; }
         public string? SSN { get; set; }
+        [Display(Name = "Passport ID")]
         public string? PassportID { get; set; }
         public string? Gender { get; set; }
         public DateTime? Birthday { get; set; }
+        [Display(Name = "Alternative Email")]
         public string? AlternativeEmail { get; set; }
+        [Display(Name = "Alternative Phone")]
         public string? AlternativePhone { get; set; }
         public string? Address { get; set; }
         public string? Others { get; set; }
@@ -46,7 +51,9 @@ namespace Idea.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        [Display(Name = "Deadline 1")]
         public DateTime Deadline_1 { get; set; }
+        [Display(Name = "Deadline 2")]
         public DateTime Deadline_2 { get; set; }
         // ...
 
@@ -66,6 +73,7 @@ namespace Idea.Models
         public int SubmissionId { get; set; }
         public virtual Submission Submission { get; set; }
 
+        [Display(Name = "Category")]
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
 

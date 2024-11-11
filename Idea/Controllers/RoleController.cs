@@ -1,10 +1,7 @@
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Idea.Data;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Idea.Areas.Admin
 {
@@ -110,7 +107,7 @@ namespace Idea.Areas.Admin
         }
 
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var role = await _context.Roles.FindAsync(id);

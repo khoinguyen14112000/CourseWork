@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
 
 @{
-    ViewData["Title"] = "Role Index";
+    ViewData["Title"] = "Manage Role";
 }
 
 <nav aria-label="breadcrumb">
@@ -13,11 +13,56 @@
     </ol>
 </nav>
 
-<div class="text-center mt-4">
-    <a class="btn btn-success" asp-action="Create">Create New</a>
+<div>
+    <a class="btn btn-success" asp-action="Create"><i class="fa-solid fa-plus"></i> Add New</a>
 </div>
 
-<div class="row d-flex align-items-center text-center font-weight-bold mt-5">
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></a> |
+                    <button asp-route-id="@item.Id" class="btn btn-danger delete-role-btn" data-role-id="@item.Id"><i class="fa-regular fa-trash-can"></i></button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        $(function () {
+            const delRoleBtn = $(".delete-role-btn");
+            delRoleBtn.on("click", function () {
+                const roleId = $(this).data("role-id");
+
+                if (confirm("Are you sure delete this role? This action can't undo.")) {
+                    $.ajax({
+                        url: "/Role/Delete",
+                        data: {
+                            id: roleId,
+                        },
+                        method: "POST",
+                        success: function () {
+                            window.location = "/Role";
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}
+
+@* <div class="row d-flex align-items-center text-center font-weight-bold mt-5">
     <div class="col-2">@Html.DisplayNameFor(model => model.Id)</div>
     <div class="col-2">@Html.DisplayNameFor(model => model.Name)</div>
     <div class="col-5">Concurrency Stamp</div>
@@ -56,4 +101,4 @@
     </div>
 
     <hr />
-}
+} *@
